@@ -1,19 +1,24 @@
 import { useState } from "react";
 
+import "./../styles/general-info-styles.css";
+
 export default function GeneralInfo() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [editMode, setEditMode] = useState(true)
 
-    function generateGeneralInfo() {
+    function generateGeneralInfo(event) {
+        event.preventDefault();
         
+        if (name !== '' && email !== '' && phone !== '')
+            setEditMode(false);
     }
 
     return (
         <div>
             { editMode ?
-            <form action={generateGeneralInfo}>
+            <form className="form-container" onSubmit={generateGeneralInfo}>
                 <label htmlFor="name">Name</label>
                 <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
                 <label htmlFor="email">Email</label>
@@ -23,7 +28,12 @@ export default function GeneralInfo() {
                 <button type="submit">Save</button>
             </form>
             :
-            null
+            <div classname="container">
+                <h2>General Info</h2>
+                <p>Name: {name}</p>
+                <p>Email: {email}</p>
+                <p>Phone: {phone}</p>
+            </div>
             }
         </div>
     )
