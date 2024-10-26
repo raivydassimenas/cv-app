@@ -28,11 +28,12 @@ export default function GeneralInfo() {
                 <button type="submit">Save</button>
             </form>
             :
-            <div classname="container">
+            <div className="container">
                 <h2>General Info</h2>
                 <p>Name: {name}</p>
                 <p>Email: {email}</p>
                 <p>Phone: {phone}</p>
+                <button onClick={() => setEditMode(true)}>Edit</button>
             </div>
             }
         </div>
